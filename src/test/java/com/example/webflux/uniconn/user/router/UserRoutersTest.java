@@ -2,7 +2,7 @@ package com.example.webflux.uniconn.user.router;
 
 import com.example.webflux.uniconn.user.domain.Major;
 import com.example.webflux.uniconn.user.domain.Univ;
-import com.example.webflux.uniconn.user.router.dto.UserCreateCommand;
+import com.example.webflux.uniconn.user.event.UserCreateCommand;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,7 +20,7 @@ class UserRoutersTest {
     @BeforeEach
     void setUp() {
         client = WebTestClient
-                .bindToRouterFunction(userRouters.postUserRoute())
+                .bindToRouterFunction(userRouters.routeUser())
                 .build();
     }
 

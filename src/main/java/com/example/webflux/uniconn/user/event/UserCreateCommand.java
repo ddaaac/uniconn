@@ -1,4 +1,4 @@
-package com.example.webflux.uniconn.user.router.dto;
+package com.example.webflux.uniconn.user.event;
 
 import com.example.webflux.uniconn.user.domain.Major;
 import com.example.webflux.uniconn.user.domain.Univ;
