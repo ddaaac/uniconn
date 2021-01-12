@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @AllArgsConstructor
@@ -16,8 +17,10 @@ public class User {
 
     @Id
     private String id;
-    private String name;
+
+    @Indexed(unique = true, sparse = true)
     private String email;
+    private String name;
     private String password;
     private Univ univ;
     private Major major;

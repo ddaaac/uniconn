@@ -1,6 +1,11 @@
 package com.example.webflux.uniconn.user.domain;
 
-import org.springframework.data.repository.reactive.ReactiveCrudRepository;
+import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
+import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Mono;
 
-public interface UserRepository extends ReactiveCrudRepository<User, String> {
+@Repository
+public interface UserRepository extends ReactiveMongoRepository<User, String> {
+
+    Mono<User> findByEmail(String email);
 }
