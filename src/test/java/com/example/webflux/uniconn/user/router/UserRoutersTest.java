@@ -1,5 +1,6 @@
 package com.example.webflux.uniconn.user.router;
 
+import com.example.webflux.uniconn.common.GlobalExceptionHandler;
 import com.example.webflux.uniconn.user.domain.Major;
 import com.example.webflux.uniconn.user.domain.Univ;
 import com.example.webflux.uniconn.user.domain.UserRepository;
@@ -11,12 +12,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.reactive.server.WebTestClient;
+import org.springframework.web.reactive.function.server.HandlerStrategies;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @AutoConfigureWebTestClient(timeout = "100000000")
 class UserRoutersTest {
+
+    @Autowired
+    private GlobalExceptionHandler globalExceptionHandler;
 
     @Autowired
     private UserRouters userRouters;
@@ -29,6 +34,7 @@ class UserRoutersTest {
     void setUp() {
         client = WebTestClient
                 .bindToRouterFunction(userRouters.routeUser())
+                .handlerStrategies(HandlerStrategies.builder().exceptionHandler(globalExceptionHandler).build())
                 .build();
 
         userRepository.deleteAll().block();

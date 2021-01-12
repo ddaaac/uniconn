@@ -1,4 +1,4 @@
-package com.example.webflux.uniconn.config;
+package com.example.webflux.uniconn.common;
 
 import com.mongodb.reactivestreams.client.MongoClient;
 import org.springframework.context.annotation.Bean;

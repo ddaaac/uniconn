@@ -1,5 +1,6 @@
 package com.example.webflux.uniconn.user.domain;
 
+import com.example.webflux.uniconn.exception.UserDuplicateException;
 import com.example.webflux.uniconn.user.event.UserCreateCommand;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -58,7 +59,7 @@ class UserServiceTest {
         Mono<User> result = userService.create(Mono.just(userCreateCommand));
 
         StepVerifier.create(result)
-                .expectError(IllegalArgumentException.class)
+                .expectError(UserDuplicateException.class)
                 .log()
                 .verify();
     }
